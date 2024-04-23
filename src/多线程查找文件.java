@@ -1,9 +1,5 @@
 import java.io.*;
-import java.nio.file.Files;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.Vector;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -12,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class 多线程查找文件 {
 
     private static final ExecutorService executorService = Executors.newFixedThreadPool(8);
-    private static final List<String> list = new Vector<>();
+    private static final List<String> list = Collections.synchronizedList(new ArrayList<>());
     private static String fileName;
     private static final AtomicInteger fileNum = new AtomicInteger(0);
     private static int exit = 0;
