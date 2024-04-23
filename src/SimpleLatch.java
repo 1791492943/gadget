@@ -7,7 +7,7 @@ public class SimpleLatch {
     /**
      * 计数
      */
-    private Integer count;
+    private int count;
 
     /**
      * 构造函数
@@ -28,7 +28,7 @@ public class SimpleLatch {
      * 获取当前计数
      * @return 当前计数
      */
-    public synchronized Integer getCount() {
+    public synchronized int getCount() {
         return count;
     }
 
@@ -86,6 +86,5 @@ public class SimpleLatch {
      */
     public synchronized void countUp() {
         count++;
-        awaken();
     }
 }
