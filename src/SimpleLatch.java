@@ -47,7 +47,7 @@ public class SimpleLatch {
      * @return 是否等待成功
      * @throws InterruptedException 线程中断异常
      */
-    public synchronized boolean await(Long time, TimeUnit timeUnit) throws InterruptedException {
+    public synchronized boolean await(Integer time, TimeUnit timeUnit) throws InterruptedException {
         long timeoutMillis = timeUnit.toMillis(time);
         long startTime = System.currentTimeMillis();
         while (count > 0) {
