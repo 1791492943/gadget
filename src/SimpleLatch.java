@@ -69,7 +69,7 @@ public class SimpleLatch {
     /**
      * 唤醒
      */
-    private  void awaken() {
+    private void awaken() {
         if (count == 0) notify();
     }
 
