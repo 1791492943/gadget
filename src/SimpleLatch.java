@@ -63,14 +63,7 @@ public class SimpleLatch {
      */
     public synchronized void countDown() {
         count--;
-        awaken();
-    }
-
-    /**
-     * 唤醒
-     */
-    private void awaken() {
-        if (count == 0) notify();
+        notifyAll();
     }
 
     /**
@@ -78,7 +71,7 @@ public class SimpleLatch {
      */
     public synchronized void awakenNow() {
         count = 0;
-        notify();
+        notifyAll();
     }
 
     /**
