@@ -13,7 +13,7 @@ public class 搜索文件 {
     }
 
     private static final ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-    private static SimpleLatch simpleLatch = new SimpleLatch(0);
+    private static final SimpleLatch simpleLatch = new SimpleLatch(0);
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -58,7 +58,7 @@ public class 搜索文件 {
                 if (f.isDirectory()) {
                     if ((fileType == FileType.DIRECTORY || fileType == FileType.ALL) && f.getName().contains(name)) {
                         String replace = f.getName().replace(name, "\33[32;4m" + name + "\33[0m");
-                        System.out.format("Directory\t" + f.getAbsolutePath() + File.separator + replace + "\n");
+                        System.out.format("Directory\t" + f.getParent() + (f.getParent().endsWith(File.separator) ? "" : File.separator) + replace + "\n");
                     }
                     simpleLatch.countUp();
                     executorService.submit(() -> {
@@ -71,7 +71,7 @@ public class 搜索文件 {
                 } else {
                     if ((fileType == FileType.FILE || fileType == FileType.ALL) && f.getName().contains(name)) {
                         String replace = f.getName().replace(name, "\33[32;4m" + name + "\33[0m");
-                        System.out.format("File\t\t" + f.getAbsolutePath() + File.separator + replace + "\n");
+                        System.out.format("File\t\t" + f.getParent() + (f.getParent().endsWith(File.separator) ? "" : File.separator) + replace + "\n");
                     }
                 }
             }
